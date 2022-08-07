@@ -1,5 +1,6 @@
 package com.example.virginmoneyappazim.di
 
+import com.example.virginmoneyappazim.api.APIReference.BASE_URL
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
@@ -36,7 +37,7 @@ class NetworkModule {
     @Provides
     fun retrofitBuilder(gson: Gson, okHttpClient: OkHttpClient) =
         Retrofit.Builder()
-            .baseUrl("https://61e947967bc0550017bc61bf.mockapi.io/api/v1/")
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .client(okHttpClient)
             .build()
