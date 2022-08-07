@@ -1,6 +1,7 @@
 package com.example.virginmoneyappazim.di
 
 import com.example.virginmoneyappazim.api.APIReference.BASE_URL
+import com.example.virginmoneyappazim.api.FetchAPI
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
@@ -17,16 +18,16 @@ import java.util.concurrent.TimeUnit
 class NetworkModule {
 
     @Provides
-    fun provideGson() = Gson()
+    fun provideGson(): Gson = Gson()
 
     @Provides
-    fun httpLoggingInterceptor() =
+    fun httpLoggingInterceptor(): HttpLoggingInterceptor =
         HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
         }
 
     @Provides
-    fun okHttpClient(loggingInterceptor: HttpLoggingInterceptor) =
+    fun okHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient =
         OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
             .connectTimeout(30, TimeUnit.SECONDS)
@@ -35,11 +36,16 @@ class NetworkModule {
             .build()
 
     @Provides
-    fun retrofitBuilder(gson: Gson, okHttpClient: OkHttpClient) =
+    fun retrofitBuilder(gson: Gson, okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .client(okHttpClient)
             .build()
+
+    @Provides
+    fun fetchAPI(retrofit: Retrofit): FetchAPI {
+        return retrofit.create(FetchAPI::class.java)
+    }
 
 }

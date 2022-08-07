@@ -7,7 +7,7 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class RepositoryImpl @Inject constructor(private val fetchAPI: FetchAPI): Repository {
-    override fun getPeople() = fetchAPI.getPeople()
+    override fun getPeople(): Response<ArrayList<PeopleItemModel>> = fetchAPI.getPeople()
 
-    override fun getRooms() = fetchAPI.getRooms()
+    override fun getRooms(): Response<ArrayList<RoomsItemModel>> = fetchAPI.getRooms()
 }
