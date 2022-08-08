@@ -33,6 +33,8 @@ class PeopleFragment : Fragment(R.layout.fragment_people) {
             viewModel.getPeople()
         }
 
+
+
         viewModel.getPeople()
 
         viewModel.peopleDetails.observe(requireActivity()) { state ->

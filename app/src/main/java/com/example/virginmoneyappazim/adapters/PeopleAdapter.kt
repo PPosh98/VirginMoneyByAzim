@@ -1,9 +1,11 @@
 package com.example.virginmoneyappazim.adapters
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.virginmoneyappazim.R
@@ -13,8 +15,8 @@ import com.example.virginmoneyappazim.model.people.PeopleItemModel
 
 class PeopleAdapter(val context: Context, val peopleList: People) : RecyclerView.Adapter<PeopleAdapter.PeopleViewHolder>() {
 
-    class PeopleViewHolder(musicItem: View) : RecyclerView.ViewHolder(musicItem) {
-        val binding = ListItemPersonBinding.bind(musicItem)
+    class PeopleViewHolder(personItem: View) : RecyclerView.ViewHolder(personItem) {
+        val binding = ListItemPersonBinding.bind(personItem)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = PeopleViewHolder(
@@ -29,6 +31,22 @@ class PeopleAdapter(val context: Context, val peopleList: People) : RecyclerView
             .into(holder.binding.ivPersonImage)
         holder.binding.tvPersonFirstName.text = peopleList[position].firstName
         holder.binding.tvPersonLastName.text = peopleList[position].lastName
+        holder.itemView.setOnClickListener() {
+            val myList = mutableListOf<String>(
+                peopleList[position].jobtitle,
+                peopleList[position].firstName,
+                peopleList[position].lastName,
+                peopleList[position].avatar,
+                peopleList[position].email,
+                peopleList[position].favouriteColor,
+                peopleList[position].id
+            )
+
+            val bundle = Bundle()
+            bundle.putStringArrayList("user_details",myList as ArrayList<String>)
+
+            it.findNavController().navigate(R.id.action_mainFragment_to_detailFragment, bundle)
+        }
     }
 
     override fun getItemCount() = peopleList.size

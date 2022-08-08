@@ -24,7 +24,7 @@ class RoomsAdapter(val context: Context, val roomsList: Rooms) : RecyclerView.Ad
     )
 
     override fun onBindViewHolder(holder: RoomsViewHolder, position: Int) {
-        holder.binding.tvRoomNumber.text = "Room: ${roomsList[position].id}"
+        holder.binding.tvRoomNumber.text = "Room ${roomsList[position].id}"
         holder.binding.tvRoomIsOccupied.text = "Occupied: ${if (roomsList[position].isOccupied) "Yes" else "No"}"
         holder.binding.tvRoomMaxOccupancy.text = "Max Occupancy: ${roomsList[position].maxOccupancy}"
     }
