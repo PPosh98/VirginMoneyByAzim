@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#C40202"
+    android:background="@color/red_500"
     android:orientation="vertical"
     tools:context=".ui.MainActivity">
 
@@ -12,13 +12,13 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabTextColor="@color/black"
-        app:tabSelectedTextColor="@color/purple_500"
-        app:tabIndicatorColor="@color/purple_500" />
+        app:tabIndicatorColor="@color/red_500"
+        app:tabSelectedTextColor="@color/red_500"
+        app:tabTextColor="@color/black" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

@@ -7,16 +7,16 @@
     tools:context=".ui.RoomsFragment">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/sflRooms"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/sflRooms">
+        android:layout_height="wrap_content">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_classic"
+            android:id="@+id/recycler_view_rooms"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingVertical="4dp"
             android:clipToPadding="false"
+            android:paddingVertical="4dp"
             android:scrollbars="vertical"
             app:layoutManager="LinearLayoutManager" />
 
